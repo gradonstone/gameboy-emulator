@@ -46,10 +46,13 @@ typedef enum Reg8 {
 } Reg8;
 
 typedef enum {
-    REG_AB, REG_BC, REG_DE, REG_HL
+    REG_AB, REG_BC, REG_DE, REG_HL, REG_SP, REG_PC
 } Reg16;
 
 uint8_t get_reg8(CPU *cpu, Reg8 r);
 uint16_t get_reg16(CPU *cpu, Reg16 r);
 void set_reg8(CPU *cpu, Reg8 r, uint8_t val);
 void set_reg16(CPU *cpu, Reg16 r, uint16_t val);
+void inc_reg8(CPU *cpu, Reg8 r);
+void inc_reg16(CPU *cpu, Reg16 r);
+void dec_reg16(CPU *cpu, Reg16 r);
