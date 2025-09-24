@@ -24,12 +24,12 @@ typedef union {
 } reg_hl;
 
 typedef struct {
-    reg_af AF;
+    reg_af AF; /* Flags register */
     reg_bc BC;
     reg_de DE;
     reg_hl HL;
-    uint16_t SP; // Stack pointers
-    uint16_t PC; // Program counter
+    uint16_t SP; /* Stack pointers */
+    uint16_t PC; /* Program counter */
 } registers;
 
 
