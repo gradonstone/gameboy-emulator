@@ -254,45 +254,61 @@ uint8_t add_hl_de(CPU* cpu)
 }   
 
 // 0x1A
-uint8_t ld_a_de(CPU* cpu)
+uint8_t ld_a_de_byte(CPU* cpu)
 {
-
+    cpu->registers.AF.A = read_byte(cpu, cpu->registers.DE.DE);
+    return 2;
 }     
 
 // 0x1B
 uint8_t dec_de(CPU* cpu)
 {
-
+    --cpu->registers.DE.DE;
+    return 2;
 }      
 
 // 0x1C
 uint8_t inc_e(CPU* cpu)
 {
-
+    ++cpu->registers.DE.E;
+    return 1;
 }       
 
 // 0x1D
 uint8_t dec_e(CPU* cpu)
 {
-
+    --cpu->registers.DE.E;
+    return 1;
 }       
 
 // 0x1E
 uint8_t ld_e_n8(CPU* cpu)
 {
-
+    cpu->registers.DE.E = read_n8(cpu);
+    return 2;
 }     
 
 // 0x1F
 uint8_t rra(CPU* cpu)
 {
-
+    uint8_t c = cpu->registers.AF.A & 0x01;
+    cpu->registers.AF.A >>= 1;
+    cpu->registers.AF.A |= ((cpu->registers.AF.F & FLAG_C) << 3);
+    cpu->registers.AF.F = 0;
+    if (c) cpu->registers.AF.F |= FLAG_C;
+    return 1;
 }         
 
 // 0x20
 uint8_t jr_nz_e8(CPU* cpu)
 {
-
+    uint8_t flags = cpu->registers.AF.F;
+    if (flags & FLAG_N && flags & FLAG_Z)
+    {
+        cpu->registers.PC = (int16_t)cpu->registers.PC + (int16_t)read_n8(cpu);
+        return 3;
+    }
+    return 2;
 }    
 
 // 0x21

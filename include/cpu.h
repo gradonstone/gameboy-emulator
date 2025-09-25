@@ -63,7 +63,7 @@ uint8_t ld_d_n8(CPU* cpu);     // 0x16
 uint8_t rla(CPU* cpu);         // 0x17
 uint8_t jr_e8(CPU* cpu);       // 0x18
 uint8_t add_hl_de(CPU* cpu);   // 0x19
-uint8_t ld_a_de(CPU* cpu);     // 0x1A
+uint8_t ld_a_de_byte(CPU* cpu);// 0x1A
 uint8_t dec_de(CPU* cpu);      // 0x1B
 uint8_t inc_e(CPU* cpu);       // 0x1C
 uint8_t dec_e(CPU* cpu);       // 0x1D
